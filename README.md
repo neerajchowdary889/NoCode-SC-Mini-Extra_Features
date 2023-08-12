@@ -13,3 +13,9 @@ docker pull neerajchowdary/nocode-sc-mini-extra_features:v1.0
 
 docker run -p 3003:3003 neerajchowdary/nocode-sc-mini-extra_features:v1.0
 ```
+
+Run on Local Machine without docker:
+```
+pip install -r requirements.txt
+python3 app.py (or) python app.py
+```
