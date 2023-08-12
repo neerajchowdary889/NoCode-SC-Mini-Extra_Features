@@ -1,0 +1,77 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask App</title>
+    <style>
+      form > * {
+        display: block;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>No-Code SmartContract (File Generation)</h1>
+    <form method="post" action="{{ url_for('user_input') }}">
+      <label for="user_input">Enter your Query:</label>
+      <input type="text" id="user_input" name="user_input">
+      <label for="bard_api_key">Bard API Key:</label>
+      <input type="text" id="bard_api_key" name="bard_api_key">
+      <label for="chatgpt_api_key">ChatGPT API Key:</label>
+      <input type="text" id="chatgpt_api_key" name="chatgpt_api_key">
+      <label for="llm_option">Please select LLM:</label>
+      <select id="llm_option" name="llm_option">
+        <option value="Bard">Bard</option>
+        <option value="ChatGPT">ChatGPT</option>
+      </select>
+      <input type="submit" value="Submit">
+      <p> > Bard Doesn't supoort memorization of previous conversation</p>
+      <p> > ChatGPT Does supoort memorization of previous conversation</p>
+    </form>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask App</title>
+    <style>
+      form > * {
+        display: block;
+        margin-bottom: 10px;
+      }
+      input[type="text"] {
+        width: 100%;
+        max-width: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>No-Code SmartContract Mini-Version (File Generation)</h1>
+    <form method="post" action="{{ url_for('user_input') }}">
+      <label for="user_input">Enter your Query:</label>
+      <input type="text" id="user_input" name="user_input" style="width: 100%; max-width: 500px;">
+      <label for="bard_api_key">Bard API Key:</label>
+      <input type="text" id="bard_api_key" name="bard_api_key" style="width: 100%; max-width: 500px;">
+      <label for="chatgpt_api_key">ChatGPT API Key:</label>
+      <input type="text" id="chatgpt_api_key" name="chatgpt_api_key" style="width: 100%; max-width: 500px;">
+      <label for="llm_option">Please select LLM:</label>
+      <select id="llm_option" name="llm_option">
+        <option value="Bard">Bard</option>
+        <option value="ChatGPT">ChatGPT</option>
+      </select>
+      <label for="language">Select a Programming language:</label>
+      <select name="language" id="language"> 
+        <option value="Solidity">Solidity</option>
+        <option value="Go">GO</option>
+      </select>
+      <input type="submit" value="Submit">
+      <p> >> Bard Doesn't supoort memorization of previous conversation</p>
+      <p> >> ChatGPT Does supoort memorization of previous conversation</p>
+      <p> >> <u><b>Note</b></u>: Sometimes it may cause irrelevent responses. In that case please re-run link.</p>
+    </form>
+  </body>
+</html>
