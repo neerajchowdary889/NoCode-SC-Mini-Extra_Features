@@ -2,6 +2,7 @@ import pprint
 import google.generativeai as palm
 import re
 import os
+from generate_tests import generate_tests
 from termcolor import colored
 from prettytable import PrettyTable
 from key import Bard_Key as GptKey
@@ -123,6 +124,10 @@ def create_SOLFile(language):
         f.close()
 
     return filename
+
+def Code_tests(language):
+    results = generate_tests("Bard", history[list(history)[-1]], language)
+    return results
 
 
 history = {}

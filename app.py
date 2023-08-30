@@ -3,11 +3,12 @@ import logging
 import os
 import csv
 from datetime import datetime
-from main import search, create_SOLFile
+from main import search, create_SOLFile, Code_tests
 from ChatGPT_main import search as ChatGPT_search
 from ChatGPT_main import advanced_search as ChatGPT_advanced_search
 from ChatGPT_main import create_SOLFile as ChatGPT_create_SOLFile
-
+from ChatGPT_main import Code_tests as ChatGPT_Code_tests
+from generate_tests import Create_testfile 
 app = Flask(__name__)
 app.secret_key = 'mysecretkey'
 append_value = 0
@@ -127,12 +128,39 @@ def return_SOLFile():
     if llm_option == "Bard":
         filename = create_SOLFile(language)
         filename = filename.replace("./Contracts/", "")
-        return render_template("solFile.html", filename=filename)
+        # return render_template("solFile.html", filename=filename)
+        return render_template("solFile.html", language=language, llm=llm_option, filename=filename)
     
     if llm_option == "ChatGPT":
         filename = ChatGPT_create_SOLFile(language)
         filename = filename.replace("./Contracts/", "")
-        return render_template("solFile.html", filename=filename)
+        return render_template("solFile.html", language=language, llm=llm_option, filename=filename)
+
+
+@app.route("/download_TestCase/<language>/<llm>/<filename>")
+def download_TestCase(language, llm, filename):
+    security("download_TestCase")
+    if llm == "Bard":
+        results = Code_tests(language)
+        filename = Create_testfile(language, filename, results)
+        return render_template("testcase.html",filename=filename ,results=results)
+    elif llm == "ChatGPT":
+        results = ChatGPT_Code_tests(language)
+        filename = Create_testfile(language, filename, results)
+        return render_template("testcase.html",filename=filename , results=results)
+    
+
+
+@app.route("/download_TestFile/<filename>")
+def download_TestFile(filename):
+    security("download_TestFile")
+    file_path = os.path.join(app.root_path, "TestFiles", filename)
+
+    if os.path.exists(file_path):
+        return send_file(file_path, as_attachment=True, download_name=filename)
+    
+    else:
+        return "File not found"
 
 
 @app.route("/download_SOLFile/<filename>")
